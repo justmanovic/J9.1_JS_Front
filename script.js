@@ -8,6 +8,7 @@ let secondCard = document.querySelectorAll(".card")[1]
 let btnEditSecondCard = document.querySelectorAll(".btn-outline-secondary")[1]
 let linkBootstrap = document.querySelector("link")
 let header = document.querySelector("header")
+let viewBtns = document.querySelectorAll('.btn-success')
 let cardText = document.querySelectorAll(".card-text")
 let cardImage = document.querySelectorAll(".card-img-top")
 let changeButtonRight = document.querySelector(".btn-secondary")
@@ -21,9 +22,9 @@ let body = document.querySelector("body")
 let nb_click = 0
 
 
-function clickFooter(){
-    nb_click += 1
-    console.log(`click numéro ${nb_click}`)
+function clickFooter() {
+  nb_click += 1
+  console.log(`click numéro ${nb_click}`)
 }
 
 footer.addEventListener("click", clickFooter)
@@ -32,42 +33,42 @@ footer.addEventListener("click", clickFooter)
 
 navbarHamburger.addEventListener("click", clickHamburger)
 
-function clickHamburger(){
-    navbarHeader.classList.toggle("collapse")
+function clickHamburger() {
+  navbarHeader.classList.toggle("collapse")
 }
 
 //Fonctionnalité 3
 
 
-function colorFirstCard(){
+function colorFirstCard() {
 
-    firstCard.style.color = "red"
+  firstCard.style.color = "red"
 }
 
 btnEditFirstCard.addEventListener("click", colorFirstCard)
 
 //Fonctionnalité 4
 
-function colorSecondCard(){
+function colorSecondCard() {
 
-    if(secondCard.style.color == "green"){
-        secondCard.style.color = "black"
-    } else{
-        secondCard.style.color = "green"
-    }
+  if (secondCard.style.color == "green") {
+    secondCard.style.color = "black"
+  } else {
+    secondCard.style.color = "green"
+  }
 }
 
 btnEditSecondCard.addEventListener("click", colorSecondCard)
 
 //Fonctionnalité 5  
 
-function removeBootstrap(){
-    
-    if(!linkBootstrap.href){
-        linkBootstrap.href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    } else{
-       linkBootstrap.removeAttribute("href")
-    }
+function removeBootstrap() {
+
+  if (!linkBootstrap.href) {
+    linkBootstrap.href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  } else {
+    linkBootstrap.removeAttribute("href")
+  }
 }
 
 header.addEventListener("dblclick", removeBootstrap)
@@ -75,21 +76,24 @@ header.addEventListener("dblclick", removeBootstrap)
 //Fonctionnalité 6
 // Event bubbling and delegation (cf. vidéos Jo)
 
-cards.forEach((card,index) => card.addEventListener("mouseenter", function(){
-        cardText[index].style.display="none"
-        cardImage[index].style.width = "20%"
-}))
+viewBtns.forEach((viewBtn, index) => {
+  viewBtn.addEventListener('mouseenter', () => {
+    if (viewBtns[index].closest('.card').querySelector('p').style.display !== 'none') {
+      viewBtns[index].closest('.card').querySelector('p').style.display = 'none'
+      viewBtns[index].closest('.card').querySelector('img').style.width = '20%'
 
-cards.forEach((card,index) => card.addEventListener("mouseleave", function(){
-        cardText[index].style.display = "block"
-        cardImage[index].style.width="100%"
-}))
+    } else {
+      viewBtns[index].closest('.card').querySelector('p').style.display = 'block'
+      viewBtns[index].closest('.card').querySelector('img').style.width = '100%'
+    }
+  })
+})
 
 
 //Fonctionnalité 7
-function changeCardRight(){
+function changeCardRight() {
 
-    document.querySelector("div.album div.container div.row").append(document.querySelectorAll("div.album div.container div.row div.col-md-4")[0])
+  document.querySelector("div.album div.container div.row").append(document.querySelectorAll("div.album div.container div.row div.col-md-4")[0])
 
 }
 
@@ -97,58 +101,58 @@ changeButtonRight.addEventListener("click", changeCardRight)
 
 //Fonctionnalité 8
 
-function changeCardLeft(){
-    changeButtonLeft.removeAttribute("href")
-    let newCard = document.querySelectorAll("div.album div.container div.row div.col-md-4")[5]
-    document.querySelector("div.album div.container div.row").prepend(newCard)
+function changeCardLeft() {
+  changeButtonLeft.removeAttribute("href")
+  let newCard = document.querySelectorAll("div.album div.container div.row div.col-md-4")[5]
+  document.querySelector("div.album div.container div.row").prepend(newCard)
 
-} 
+}
 
 changeButtonLeft.addEventListener("click", changeCardLeft)
 
-document.addEventListener("keydown", function(e){
-    let text=fonctionTest();
-    if (text === 'JS & Events'){
+document.addEventListener("keydown", function (e) {
+  let text = fonctionTest();
+  if (text === 'JS & Events') {
 
-        switch(e.key){
-            case 'a':
-                body.classList.remove("offset-md-4")
-                body.classList.remove("offset-md-8")
-                body.classList.remove("col-4")
-                body.classList.toggle("col-4")
-                break;
+    switch (e.key) {
+      case 'a':
+        body.classList.remove("offset-md-4")
+        body.classList.remove("offset-md-8")
+        body.classList.remove("col-4")
+        body.classList.toggle("col-4")
+        break;
 
-            case 'y':
-                body.classList.remove("offset-md-4")
-                body.classList.remove("offset-md-8")
-                body.classList.remove("col-4")
-                body.classList.toggle("col-4")
-                body.classList.toggle("offset-md-4")
-
-
-                break;
-
-            case 'p':
-                body.classList.remove("offset-md-4")
-                body.classList.remove("offset-md-8")
-                body.classList.remove("col-4")
-                body.classList.toggle("col-4")
-                body.classList.toggle("offset-md-8")
+      case 'y':
+        body.classList.remove("offset-md-4")
+        body.classList.remove("offset-md-8")
+        body.classList.remove("col-4")
+        body.classList.toggle("col-4")
+        body.classList.toggle("offset-md-4")
 
 
-                break;
+        break;
 
-            case 'b':
-                body.classList.remove("offset-md-4")
-                body.classList.remove("offset-md-8")
-                body.classList.remove("col-4")
-                break;
-            
-        }
-        
-        console.log(e)
-        console.log(e.key)
+      case 'p':
+        body.classList.remove("offset-md-4")
+        body.classList.remove("offset-md-8")
+        body.classList.remove("col-4")
+        body.classList.toggle("col-4")
+        body.classList.toggle("offset-md-8")
+
+
+        break;
+
+      case 'b':
+        body.classList.remove("offset-md-4")
+        body.classList.remove("offset-md-8")
+        body.classList.remove("col-4")
+        break;
+
     }
+
+    console.log(e)
+    console.log(e.key)
+  }
 })
 
 // Si l'utilisateur presse la touche "a", l'ensemble de la page va être condensé sur 4 colonnes Bootstrap à gauche de l'écran.
@@ -166,11 +170,11 @@ document.addEventListener("keydown", function(e){
 //     }
 // })
 
-function fonctionTest(){
-    if (window.getSelection){
-        return window.getSelection().toString();
-    } 
-    return '';
+function fonctionTest() {
+  if (window.getSelection) {
+    return window.getSelection().toString();
+  }
+  return '';
 }
 
 // function fonctionTest(){
