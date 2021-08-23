@@ -93,7 +93,7 @@ viewBtns.forEach((viewBtn, index) => {
 //Fonctionnalité 7
 function changeCardRight() {
 
-  document.querySelector("div.album div.container div.row").append(document.querySelectorAll("div.album div.container div.row div.col-md-4")[0])
+  document.querySelector("div.album div.container div.row").prepend(document.querySelectorAll(".album .container .row .col-md-4")[5])
 
 }
 
@@ -103,8 +103,8 @@ changeButtonRight.addEventListener("click", changeCardRight)
 
 function changeCardLeft() {
   changeButtonLeft.removeAttribute("href")
-  let newCard = document.querySelectorAll("div.album div.container div.row div.col-md-4")[5]
-  document.querySelector("div.album div.container div.row").prepend(newCard)
+  let newCard = document.querySelectorAll(".album .container .row .col-md-4")[0]
+  document.querySelector(".album .container .row").append(newCard)
 
 }
 
