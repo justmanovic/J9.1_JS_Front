@@ -161,14 +161,14 @@ document.addEventListener("keydown", function (e) {
 // Si l'utilisateur presse la touche "b", tout redevient normal.
 
 
-// document.addEventListener("keydown", function(){
-//     let text=fonctionTest();
-//     if (text === 'JS & Events'){
-//         logo.style.color="blue";
-//     } else {
-//         logo.style.color="white";
-//     }
-// })
+document.addEventListener("keydown", function () {
+  let text = fonctionTest();
+  if (text === 'JS & Events') {
+    logo.style.color = "blue";
+  } else {
+    logo.style.color = "white";
+  }
+})
 
 function fonctionTest() {
   if (window.getSelection) {
